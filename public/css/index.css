@@ -1,0 +1,17 @@
+.sice{
+    padding-top: 80px;
+    margin: auto;
+    width: 500px;
+}
+body{
+    background-color: burlywood;
+}
+
+h1,h2{
+    font-family: cursive;
+}
+
+sap{
+    margin: auto;
+    padding-top: 80px;
+}

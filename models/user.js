@@ -12,5 +12,5 @@ userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 }
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("user", userSchema);
 

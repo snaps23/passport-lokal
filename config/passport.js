@@ -3,7 +3,6 @@ var localStrategy = require("passport-local").Strategy;
 
 var User = require("../models/user");
 
-module.exports= function(passport){
 
     passport.serializeUser(function (user, done) {
         done(null, user._id);
@@ -29,10 +28,10 @@ module.exports= function(passport){
             }
 
             var person = new User();
-            person.fullname = fullname;
-            person.username = username;
-            person.email = email;
-            person.password = person.encryptPassword(password);
+            person.fullname = req.body.fullname;
+            person.username = req.body.username;
+            person.email = req.body.email;
+            person.password = person.encryptPassword(req.body.password);
 
             person.save(function (err) {
                 if (err) {
@@ -42,4 +41,3 @@ module.exports= function(passport){
             });
         })
     }));
-};

@@ -57,5 +57,6 @@ passport.use("local-signin", new localStrategy({
         if (!user.validPassword(password)) {
             return done(null, false);
         }
+        return done(null, user);
     })
 }));

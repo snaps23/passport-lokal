@@ -4,18 +4,24 @@ var passport = require("passport");
 var User = require("../models/user");
 require("../config/passport");
 
-
+var loggedIn = function(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/signin");
+    }
+}
 
 router.get("/", function(req, res){
     res.render("index"); 
 });
 
 router.get("/signin", function(req, res){
-    res.render("signin");
+    res.render("signin",{loginError: req.flash("loginError") });
 });
 
 router.post("/signin", passport.authenticate("local-signin", {
-    successRedirect: "/profile",
+    successRedirect: "/dashboard",
     failureRedirect: "/signin",
     failureFlash: true
 })); 
@@ -25,7 +31,7 @@ router.get("/signup", function(req, res){
 });
 
 router.post("/signup", passport.authenticate("local-signup", {
-    successRedirect: "/profile",
+    successRedirect: "/dashboard",
     failureRedirect: "/signup",
     failureFlash: true
 })); 
@@ -35,8 +41,8 @@ router.get('/signout', function(req, res) {
     res.redirect('/');
   });
 
-router.get("/profile", function(req, res){
-    res.render("profile", {user: req.user});
+router.get("/dashboard", loggedIn, function(req, res){
+    res.render("dashboard");
 });
 
 

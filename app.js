@@ -5,6 +5,7 @@ var session = require("express-session");
 var cookieParser = require("cookie-parser");
 var passport = require("passport");
 var mongoStore = require("connect-mongo")(session);
+var flash = require("express-flash");
 var path = require("path");
 var port = process.env.PORT || 8080;
 
@@ -26,6 +27,7 @@ app.use(session({
     saveUninitialized: false  ,
     store: new mongoStore({mongooseConnection: mongoose.connection})
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);

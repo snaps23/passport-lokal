@@ -15,9 +15,18 @@
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.8",
     "express": "^4.16.3",
+    "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "mongoose": "^5.0.13",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snaps23/passport-lokal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snaps23/passport-lokal/issues"
+  },
+  "homepage": "https://github.com/snaps23/passport-lokal#readme"
 }

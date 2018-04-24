@@ -1,5 +1,3 @@
-
-
 var passport = require("passport");
 var localStrategy = require("passport-local").Strategy
 var User = require("../models/user");
@@ -47,7 +45,7 @@ passport.use("local-signin", new localStrategy({
     passwordField: "password",
     passReqToCallback: true
 }, function (req, username, password, done) {
-    User.findOne({ "username": username }, function (err, user) {
+    User.findOne({ '$and': [{'username':username}, {'password': req.body.password}] }, function (err, user) {
         if (err) {
             return done(err);
         }
@@ -58,5 +56,5 @@ passport.use("local-signin", new localStrategy({
             return done(null, false);
         }
         return done(null, user);
-    })
+    });
 })); 

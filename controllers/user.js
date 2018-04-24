@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
-require("../config/passport");
+passportConf = require("../config/passport");
 
 var loggedIn = function(req, res, next){
     if(req.isAuthenticated()){
@@ -12,34 +12,38 @@ var loggedIn = function(req, res, next){
     }
 }
 
-router.get("/", function(req, res){
-    res.render("index"); 
+router.get("/", function (req, res) {
+    res.render("index");
 });
 
-router.get("/signin", function(req, res){
-    res.render("signin",{loginError: req.flash("loginError") });
+router.get("/signin", function (req, res, next) {
+    if (req.user) {
+        return res.redirect("/profile");
+    } else {
+        res.render("signin");
+    }
 });
 
 router.post("/signin", passport.authenticate("local-signin", {
     successRedirect: "/dashboard",
-    failureRedirect: "/signin",
-    failureFlash: true
-})); 
+    failureRedirect: "/signin"
+}));
 
-router.get("/signup", function(req, res){
+router.get("/signup", function (req, res) {
     res.render("signup");
 });
 
 router.post("/signup", passport.authenticate("local-signup", {
-    successRedirect: "/dashboard",
+    successRedirect: "/signin",
     failureRedirect: "/signup",
     failureFlash: true
 })); 
 
-router.get('/signout', function(req, res) {
+
+router.get('/signout', function (req, res) {
     req.logout();
     res.redirect('/');
-  });
+});
 
 router.get("/dashboard", loggedIn, function(req, res){
     res.render("dashboard");

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "mahatma",
+  "author": "Yakubu Ahmed El-Rufai",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snaps23/passport-lokal.git"
+    "url": "git+https://github.com/yrufai/passport-lokal.git"
   },
   "bugs": {
-    "url": "https://github.com/snaps23/passport-lokal/issues"
+    "url": "https://github.com/yrufai/passport-lokal/issues"
   },
-  "homepage": "https://github.com/snaps23/passport-lokal#readme"
+  "homepage": "https://github.com/yrufai/passport-lokal#readme"
 }
